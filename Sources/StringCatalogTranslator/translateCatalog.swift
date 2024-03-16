@@ -6,11 +6,13 @@
 import Foundation
 import StringCatalog
 
-typealias funcTranslateType = (String, String?) async throws -> String
+protocol Translator {
+    associatedtype TranslateResult
+    func translate(_ key: String, _ comment: String?, _ sourceLanguage: StringLanguage, _ targetLanguage: StringLanguage) async throws -> TranslateResult
+}
 
-func translateCatalog(_ catalog: StringCatalog, to targetLanguage: StringLanguage, with translate: funcTranslateType) async throws -> StringCatalog {
+func translateCatalog<T: Translator>(_ catalog: StringCatalog, to targetLanguage: StringLanguage, with translator: T) async throws -> StringCatalog where T.TranslateResult == String {
     let catalogIsolated = MyActorIsolated(catalog)
-    
     try await withThrowingTaskGroup(of: Void.self) { group in
         for index in catalog.strings.indices {
             group.addTask {
@@ -18,14 +20,13 @@ func translateCatalog(_ catalog: StringCatalog, to targetLanguage: StringLanguag
                 let value = catalog.strings.values[index]
                 try await catalogIsolated.withValue {
                     if $0.strings[key]?.localizations == nil {
-                        let translation = try await translate(key, value.comment)
+                        let translation = try await translator.translate(key, value.comment, $0.sourceLanguage, targetLanguage)
                         $0.strings[key]?.localizations = [targetLanguage: StringLocalization(stringUnit: .init(state: .translated, value: translation))]
-                    } 
+                    }
                     else if $0.strings[key]?.localizations?[targetLanguage] == nil {
-                        let translation = try await translate(key, value.comment)
+                        let translation = try await translator.translate(key, value.comment, $0.sourceLanguage, targetLanguage)
                         $0.strings[key]?.localizations?[targetLanguage] = StringLocalization(stringUnit: .init(state: .translated, value: translation))
                     }
-//                    print("🥁", key, "👍", $0.strings[key]?.localizations?[targetLanguage])
                 }
             }
         }
@@ -35,6 +36,33 @@ func translateCatalog(_ catalog: StringCatalog, to targetLanguage: StringLanguag
     try await print(catalogIsolated.value.encodePrettyToString())
     return await catalogIsolated.value
 }
+
+//func translateCatalog(_ catalog: StringCatalog, to targetLanguage: StringLanguage, with translate: @escaping (String, String?)async throws ->String) async throws -> StringCatalog {
+//    let catalogIsolated = MyActorIsolated(catalog)
+//    try await withThrowingTaskGroup(of: Void.self) { group in
+//        for index in catalog.strings.indices {
+//            group.addTask {
+//                let key = catalog.strings.keys[index]
+//                let value = catalog.strings.values[index]
+//                try await catalogIsolated.withValue {
+//                    if $0.strings[key]?.localizations == nil {
+//                        let translation = try await translate(key, value.comment)
+//                        $0.strings[key]?.localizations = [targetLanguage: StringLocalization(stringUnit: .init(state: .translated, value: translation))]
+//                    } 
+//                    else if $0.strings[key]?.localizations?[targetLanguage] == nil {
+//                        let translation = try await translate(key, value.comment)
+//                        $0.strings[key]?.localizations?[targetLanguage] = StringLocalization(stringUnit: .init(state: .translated, value: translation))
+//                    }
+//                    print("🥁", key, "👍", $0.strings[key]?.localizations?[targetLanguage])
+//                }
+//            }
+//        }
+//        
+//        try await group.waitForAll()
+//    }
+//    try await print(catalogIsolated.value.encodePrettyToString())
+//    return await catalogIsolated.value
+//}
 
 //func translateCatalog(_ catalog: StringCatalog, to targetLanguage: StringLanguage, with translate: (String, String?) async throws -> String) async throws -> StringCatalog {
 //    var newCatalog = catalog

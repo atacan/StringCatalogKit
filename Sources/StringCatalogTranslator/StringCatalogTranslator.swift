@@ -8,6 +8,33 @@ public struct StringCatalogTranslator {
     public var translateWithDeepL: @Sendable (StringCatalog, _ targetLanguage: StringLanguage) async throws -> StringCatalog
 }
 
+struct DeepTranslator: Translator {
+    func translate(_ text: String, _ comment: String?, _ sourceLanguage: StringLanguage, _ targetLanguage: StringLanguage) async throws -> String {
+        @Dependency(\.deepLURLSession) var deepLURLSession
+        
+        let response = try await deepLURLSession.client().translateText(.init(body: .json(.init(
+            text: [text],
+            source_lang: sourceLanguage.deepLSourceLanguage,
+            target_lang: targetLanguage.deepLTargetLanguage,
+            context: comment
+        ))))
+        
+        guard let translation = try response.ok.body.json.translations?.compactMap({ translationsPayload in
+            translationsPayload.text
+        }).joined() else {
+            throw StringCatalogTranslator.Failure.translationsPayloadNil
+        }
+        return translation
+        
+    }
+}
+
+struct PreviewTranslator: Translator {
+    func translate(_ key: String, _ comment: String?, _ sourceLanguage: StringLanguage, _ targetLanguage: StringLanguage) async throws -> String {
+        return "This is German translation 🇩🇪"
+    }
+}
+
 extension StringCatalogTranslator: DependencyKey {
     public static var liveValue: Self = {
         @Dependency(\.deepLURLSession) var deepLURLSession
@@ -16,20 +43,8 @@ extension StringCatalogTranslator: DependencyKey {
         translateWithDeepL: { catalog, targetLanguage in
             let sourceLanguage = catalog.sourceLanguage
             
-            return try await translateCatalog(catalog, to: targetLanguage) { text, comment in
-                let response = try await deepLURLSession.client().translateText(.init(body: .json(.init(
-                    text: [text], 
-                    source_lang: sourceLanguage.deepLSourceLanguage,
-                    target_lang: targetLanguage.deepLTargetLanguage,
-                    context: comment
-                ))))
-                guard let translation = try response.ok.body.json.translations?.compactMap({ translationsPayload in
-                    translationsPayload.text
-                }).joined() else {
-                    throw Failure.translationsPayloadNil
-                }
-                return translation
-            }
+            
+            return try await translateCatalog(catalog, to: targetLanguage, with: DeepTranslator())
         }
         )
     }()
@@ -37,13 +52,11 @@ extension StringCatalogTranslator: DependencyKey {
     public static var previewValue: Self {
         return Self (
             translateWithDeepL: { catalog, targetLanguage in
-                
-                return try await translateCatalog(catalog, to: targetLanguage) { text, comment in
-                        return "This is German translation 🇩🇪"
-                }
+                return try await translateCatalog(catalog, to: targetLanguage, with: PreviewTranslator())
             }
         )
     }
+    
 }
 
 extension StringCatalogTranslator {

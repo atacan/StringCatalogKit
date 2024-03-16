@@ -8,14 +8,7 @@
 
     },
     "*Disk*: %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This is German translation 🇩🇪"
-          }
-        }
-      }
+
     },
     "*Memory*: %@" : {
 
@@ -30,7 +23,15 @@
 
     },
     "Bring Your Own API Key" : {
-      "comment" : "This is the title of the list of models that the user can use with their own API key"
+      "comment" : "This is the title of the list of models that the user can use with their own API key",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is German translation 🇩🇪"
+          }
+        }
+      }
     },
     "Delete" : {
 
@@ -45,14 +46,7 @@
 
     },
     "Enable GPT post-transcription process" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This is German translation 🇩🇪"
-          }
-        }
-      }
+
     },
     "Enabled" : {
 
