@@ -1,0 +1,180 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "  Click here to go to OpenAI and get your key" : {
+
+    },
+    "*Disk*: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is German translation 🇩🇪"
+          }
+        }
+      }
+    },
+    "*Memory*: %@" : {
+
+    },
+    "%.2f" : {
+
+    },
+    "Animate" : {
+
+    },
+    "Background Theme" : {
+
+    },
+    "Bring Your Own API Key" : {
+      "comment" : "This is the title of the list of models that the user can use with their own API key"
+    },
+    "Delete" : {
+
+    },
+    "Do you want to delete this model from disk?" : {
+
+    },
+    "Do you want to stop downloading this model?" : {
+
+    },
+    "Download the model first to activate it" : {
+
+    },
+    "Enable GPT post-transcription process" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is German translation 🇩🇪"
+          }
+        }
+      }
+    },
+    "Enabled" : {
+
+    },
+    "Enter your API Key to enable this feature" : {
+
+    },
+    "GPT Model" : {
+
+    },
+    "If you use only one language choose that. Otherwise you can choose \"Auto\" to auto-detect it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is German translation 🇩🇪"
+          }
+        }
+      }
+    },
+    "Initial Prompt" : {
+
+    },
+    "Input" : {
+
+    },
+    "Insert by" : {
+
+    },
+    "Keyboard Shortcut" : {
+
+    },
+    "Language" : {
+
+    },
+    "Launch at login" : {
+
+    },
+    "Let us know if you are interested" : {
+
+    },
+    "Let us Take Care of it" : {
+
+    },
+    "Models we plan to support" : {
+
+    },
+    "Nevermind" : {
+
+    },
+    "OK" : {
+
+    },
+    "OpenAI API Key:" : {
+
+    },
+    "Output" : {
+
+    },
+    "Play Sounds" : {
+
+    },
+    "Save Transcriptions" : {
+
+    },
+    "Send the transcript to ChatGPT for context-aware corrections" : {
+
+    },
+    "Stop" : {
+
+    },
+    "System Prompt" : {
+
+    },
+    "Texture" : {
+
+    },
+    "Use this model to transcribe" : {
+      "comment" : "Text to show when the user hovers on activation checkbox for a speech-to-text model"
+    },
+    "Whisper distinguishes itself from traditional voice-to-text models by incorporating characteristics of an LLM model.\nTo enhance accuracy, or make it follow a writing style input an initial prompt.\nKeep in mind that Whisper only considers the first 244 tokens of the prompt." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whisper unterscheidet sich von herkömmlichen Voice-to-Text-Modellen durch die Einbeziehung von Merkmalen eines LLM-Modells.\nUm die Genauigkeit zu erhöhen, oder damit es einem Schreibstil folgt, geben Sie eine erste Prompt ein.\nBeachten Sie, dass Whisper nur die ersten 244 Token des Prompts berücksichtigt."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whisper se distingue des modèles traditionnels de synthèse vocale en incorporant les caractéristiques d'un modèle LLM.\nPour améliorer la précision ou faire en sorte qu'il suive un style d'écriture, saisissez une invite initiale.\nGardez à l'esprit que Whisper ne prend en compte que les 244 premiers tokens de l'invite."
+          }
+        }
+      }
+    },
+    "You can match the word as a exact match by choosing `string` or you can use a `regex` pattern. All the matches are replaced by the given input. \nLeave it empty if you want to delete the matches." : {
+
+    },
+    "You can start the recording by\n   • clicking on the status bar item or\n   • using the keyboard shortcut defined below" : {
+
+    },
+    "You can subscribe and we'll run the LLM using your prompts." : {
+
+    },
+    "You can use your own API key to use the LLM post process feature." : {
+
+    },
+    "Your clipboard does not change" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ihre Zwischenablage ändert sich nicht"
+          }
+        }
+      }
+    },
+    "Your clipboard is not affected" : {
+
+    }
+  },
+  "version" : "1.0"
+}

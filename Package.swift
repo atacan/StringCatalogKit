@@ -9,7 +9,14 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(name: "StringCatalogKit", targets: ["StringCatalogKit"]),
-        .library(name: "StringCatalog", targets: ["StringCatalog"])
+        .library(name: "StringCatalog", targets: ["StringCatalog"]),
+        .library(name: "StringCatalogTranslator", targets: ["StringCatalogTranslator"]),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/pointfreeco/swift-concurrency-extras", from: "1.1.0"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.2.1"),
+        //
+        .package(path: "../SwiftDeepL"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -17,19 +24,40 @@ let package = Package(
         .target(
             name: "StringCatalogKit"),
         .target(name: "StringCatalog"),
+        .target(name: "StringCatalogTranslator", dependencies: [
+            .StringCatalog,
+            .ConcurrencyExtras,
+            .Dependencies,
+            .DependenciesMacros,
+            .DeepLURLSessionDependency,
+        ]),
         .testTarget(
             name: "StringCatalogKitTests",
             dependencies: ["StringCatalogKit"]),
+        .testTarget(
+            name: "StringCatalogTranslatorTests",
+            dependencies: [.StringCatalogTranslator],
+            resources: [
+                .process("TestResources"),
+            ]
+        ),
         //
         .executableTarget(
             name: "_Playground",
             dependencies: [
-                .StringCatalog
+                .StringCatalog,
+                .StringCatalogTranslator
             ]
         )
     ]
 )
 
 extension Target.Dependency {
+    static let ConcurrencyExtras: Self = .product(name: "ConcurrencyExtras", package: "swift-concurrency-extras")
     static let StringCatalog: Self = "StringCatalog"
+    static let StringCatalogTranslator: Self = "StringCatalogTranslator"
+    static let Dependencies = Self.product(name: "Dependencies", package: "swift-dependencies")
+    static let DependenciesMacros = Self.product(name: "DependenciesMacros", package: "swift-dependencies")
+    static let DeepLURLSessionDependency = Self.product(name: "DeepLURLSessionDependency", package: "SwiftDeepL")
 }
+

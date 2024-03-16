@@ -1,6 +1,6 @@
 import Foundation
 
-public struct StringVariations: Codable {
+public struct StringVariations: Codable, Equatable {
     public let device: DictionaryWrapper<DeviceKey, StringVariation>?
     public let plural: DictionaryWrapper<PluralKey, StringVariation>?
 }

@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:StringCatalogKit}",
+            "name": "Debug _Playground",
+            "program": "${workspaceFolder:StringCatalogKit}/.build/debug/_Playground",
+            "preLaunchTask": "swift: Build Debug _Playground"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:StringCatalogKit}",
+            "name": "Release _Playground",
+            "program": "${workspaceFolder:StringCatalogKit}/.build/release/_Playground",
+            "preLaunchTask": "swift: Build Release _Playground"
+        }
+    ]
+}
