@@ -5,19 +5,31 @@ import PackageDescription
 
 let package = Package(
     name: "StringCatalogKit",
+    platforms: [.macOS(.v14)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "StringCatalogKit",
-            targets: ["StringCatalogKit"]),
+        .library(name: "StringCatalogKit", targets: ["StringCatalogKit"]),
+        .library(name: "StringCatalog", targets: ["StringCatalog"])
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "StringCatalogKit"),
+        .target(name: "StringCatalog"),
         .testTarget(
             name: "StringCatalogKitTests",
             dependencies: ["StringCatalogKit"]),
+        //
+        .executableTarget(
+            name: "_Playground",
+            dependencies: [
+                .StringCatalog
+            ]
+        )
     ]
 )
+
+extension Target.Dependency {
+    static let StringCatalog: Self = "StringCatalog"
+}
