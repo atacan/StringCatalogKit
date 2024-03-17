@@ -23,23 +23,28 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "StringCatalogKit"),
+            name: "StringCatalogKit"
+        ),
         .target(name: "StringCatalog"),
-        .target(name: "StringCatalogTranslator", dependencies: [
-            .StringCatalog,
-            .ConcurrencyExtras,
-            .Dependencies,
-            .DependenciesMacros,
-            .DeepLURLSessionDependency,
-        ]),
+        .target(
+            name: "StringCatalogTranslator",
+            dependencies: [
+                .StringCatalog,
+                .ConcurrencyExtras,
+                .Dependencies,
+                .DependenciesMacros,
+                .DeepLURLSessionDependency,
+            ]
+        ),
         .testTarget(
             name: "StringCatalogKitTests",
-            dependencies: ["StringCatalogKit"]),
+            dependencies: ["StringCatalogKit"]
+        ),
         .testTarget(
             name: "StringCatalogTranslatorTests",
             dependencies: [.StringCatalogTranslator, .CustomDump],
             resources: [
-                .process("TestResources"),
+                .process("TestResources")
             ]
         ),
         //
@@ -47,9 +52,9 @@ let package = Package(
             name: "_Playground",
             dependencies: [
                 .StringCatalog,
-                .StringCatalogTranslator
+                .StringCatalogTranslator,
             ]
-        )
+        ),
     ]
 )
 
@@ -62,4 +67,3 @@ extension Target.Dependency {
     static let DeepLURLSessionDependency = Self.product(name: "DeepLURLSessionDependency", package: "SwiftDeepL")
     static let CustomDump = Self.product(name: "CustomDump", package: "swift-custom-dump")
 }
-

@@ -4,7 +4,7 @@ import Foundation
 // Cannot be a property wrapper due to https://forums.swift.org/t/using-property-wrappers-with-codable/29804
 // Assumes `Key.RawValue.init(rawValue:)` is non-failable
 public struct DictionaryWrapper<Key: Hashable & RawRepresentable, Value> where Key.RawValue: Hashable {
-    public typealias WrappedValue = Dictionary<Key.RawValue, Value>
+    public typealias WrappedValue = [Key.RawValue: Value]
 
     public var wrappedValue: WrappedValue
 
@@ -78,11 +78,10 @@ extension DictionaryWrapper: Sequence {
         public var base: WrappedValue.Iterator
 
         public mutating func next() -> DictionaryWrapper<Key, Value>.Element? {
-            if let next = base.next() {
-                return (key: Key(rawValue: next.key)!, value: next.value)
-            } else {
+            guard let next = base.next() else {
                 return nil
             }
+            return (key: Key(rawValue: next.key)!, value: next.value)
         }
     }
 

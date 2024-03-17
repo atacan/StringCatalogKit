@@ -3,7 +3,7 @@ import Foundation
 public struct StringCatalog: Codable, Equatable {
     public var sourceLanguage: StringLanguage
     public var strings: [String: StringEntry]
-    public var version: String // TODO: Use a Version type?
+    public var version: String  // TODO: Use a Version type?
 }
 
 // MARK: - Init
@@ -20,7 +20,7 @@ extension StringCatalog {
     public func encodePrettyToString() throws -> String {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        
+
         let encodedData = try encoder.encode(self)
         return String(data: encodedData, encoding: .utf8)!
     }
