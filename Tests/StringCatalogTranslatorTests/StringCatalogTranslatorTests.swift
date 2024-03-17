@@ -7,6 +7,7 @@ import XCTest
 import StringCatalogTranslator
 import Dependencies
 import StringCatalog
+import CustomDump
 
 final class StringCatalogTranslatorTests: XCTestCase {
     @Dependency(StringCatalogTranslator.self) var stringCatalogTranslator
@@ -23,21 +24,21 @@ final class StringCatalogTranslatorTests: XCTestCase {
         let catalogJson = try String(contentsOf: InputFiles.DipDictSettings)
         
         let catalog = try JSONDecoder().decode(StringCatalog.self, from: catalogJson.data(using: .utf8)!)
-        
+        enum LocalError: Error {case failToTranslate}
         try await withDependencies {
-            $0.stringCatalogTranslator.translateWithDeepL = { catalog, targetLanguage in
-                return catalog
+            $0.stringCatalogTranslator.translateWithDeepL = { text, _, _ , _ in
+                throw LocalError.failToTranslate
             }
         } operation: {
-            let translatedCatalog = try await stringCatalogTranslator.translateWithDeepL(catalog, .german)
+            let translatedCatalog = try await stringCatalogTranslator.translateCatalog(catalog, to: .german, translationService: .deepL)
             
-            XCTAssertEqual(catalog, translatedCatalog)
-            XCTAssertEqual(catalogJson, try catalog.encodePrettyToString())
-            XCTAssertEqual(catalogJson, try translatedCatalog.encodePrettyToString())
+            XCTAssertNoDifference(catalog, translatedCatalog)
+            XCTAssertNoDifference(catalogJson, try catalog.encodePrettyToString())
+            XCTAssertNoDifference(catalogJson, try translatedCatalog.encodePrettyToString())
         }
     }
     
-    func testManualCheck() async throws {
+    func testDeepL() async throws {
         let catalogJson = try String(contentsOf: InputFiles.DipDictSettings)
         
         let catalog = try JSONDecoder().decode(StringCatalog.self, from: catalogJson.data(using: .utf8)!)
@@ -45,13 +46,35 @@ final class StringCatalogTranslatorTests: XCTestCase {
         try await withDependencies {
             $0.stringCatalogTranslator = .previewValue
         } operation: {
-            let translatedCatalog = try await stringCatalogTranslator.translateWithDeepL(catalog, .german)
+            let targetLanguage = StringLanguage.german
+            let translatedCatalog = try await stringCatalogTranslator.translateCatalog(catalog, to: targetLanguage, translationService: .deepL)
+            
+            // every string has localization
+            for (textToTranslate, stringEntry) in translatedCatalog.strings {
+                guard let localizations = stringEntry.localizations else {
+                    fatalError()
+                }
+                // every localization has entry for target language
+                guard let localization = localizations[targetLanguage] else {
+                    fatalError()
+                }
+                
+                // the existing translation stayed the same
+                if let existing = catalog.strings[textToTranslate]?.localizations?[targetLanguage]?.stringUnit?.value {
+                    XCTAssertEqual(localization.stringUnit?.value, existing)
+                }
+                
+            }
+            
+            // same amount of keys
+            XCTAssertEqual(catalog.strings.keys.count, translatedCatalog.strings.keys.count)
+            
+            
             let translatedCatalogPath = InputFiles.testResourcesDirectory.appending(component: "_DipDictSettings.json").path()
 //            let translatedCatalogPath = InputFiles.testResourcesDirectory.appending(component: "_DipDictSettings.xcstrings").path()
             try translatedCatalog.encodePrettyToString().write(toFile: translatedCatalogPath, atomically: true, encoding: .utf8)
-//            XCTAssertEqual(catalog, translatedCatalog)
-//            XCTAssertEqual(catalogJson, try catalog.encodePrettyToString())
-//            XCTAssertEqual(catalogJson, try translatedCatalog.encodePrettyToString())
+            
+            
         }
     }
 }

@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-concurrency-extras", from: "1.1.0"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.2.1"),
+        .package(url: "https://github.com/pointfreeco/swift-custom-dump", from: "1.3.0"),
         //
         .package(path: "../SwiftDeepL"),
     ],
@@ -36,7 +37,7 @@ let package = Package(
             dependencies: ["StringCatalogKit"]),
         .testTarget(
             name: "StringCatalogTranslatorTests",
-            dependencies: [.StringCatalogTranslator],
+            dependencies: [.StringCatalogTranslator, .CustomDump],
             resources: [
                 .process("TestResources"),
             ]
@@ -59,5 +60,6 @@ extension Target.Dependency {
     static let Dependencies = Self.product(name: "Dependencies", package: "swift-dependencies")
     static let DependenciesMacros = Self.product(name: "DependenciesMacros", package: "swift-dependencies")
     static let DeepLURLSessionDependency = Self.product(name: "DeepLURLSessionDependency", package: "SwiftDeepL")
+    static let CustomDump = Self.product(name: "CustomDump", package: "swift-custom-dump")
 }
 

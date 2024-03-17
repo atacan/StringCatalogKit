@@ -2,25 +2,74 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: []"
+          }
+        }
+      }
     },
     "  Click here to go to OpenAI and get your key" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [  Click here to go to OpenAI and get your key]"
+          }
+        }
+      }
     },
     "*Disk*: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [*Disk*: %@]"
+          }
+        }
+      }
     },
     "*Memory*: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [*Memory*: %@]"
+          }
+        }
+      }
     },
     "%.2f" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [%.2f]"
+          }
+        }
+      }
     },
     "Animate" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Animate]"
+          }
+        }
+      }
     },
     "Background Theme" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Background Theme]"
+          }
+        }
+      }
     },
     "Bring Your Own API Key" : {
       "comment" : "This is the title of the list of models that the user can use with their own API key",
@@ -28,104 +77,301 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is German translation 🇩🇪"
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Bring Your Own API Key]"
           }
         }
       }
     },
     "Delete" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Delete]"
+          }
+        }
+      }
     },
     "Do you want to delete this model from disk?" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Do you want to delete this model from disk?]"
+          }
+        }
+      }
     },
     "Do you want to stop downloading this model?" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Do you want to stop downloading this model?]"
+          }
+        }
+      }
     },
     "Download the model first to activate it" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Download the model first to activate it]"
+          }
+        }
+      }
     },
     "Enable GPT post-transcription process" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enable GPT post-transcription process]"
+          }
+        }
+      }
     },
     "Enabled" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enabled]"
+          }
+        }
+      }
     },
     "Enter your API Key to enable this feature" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enter your API Key to enable this feature]"
+          }
+        }
+      }
     },
     "GPT Model" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [GPT Model]"
+          }
+        }
+      }
     },
     "If you use only one language choose that. Otherwise you can choose \"Auto\" to auto-detect it." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is German translation 🇩🇪"
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [If you use only one language choose that. Otherwise you can choose \"Auto\" to auto-detect it.]"
           }
         }
       }
     },
     "Initial Prompt" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Initial Prompt]"
+          }
+        }
+      }
     },
     "Input" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Input]"
+          }
+        }
+      }
     },
     "Insert by" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Insert by]"
+          }
+        }
+      }
     },
     "Keyboard Shortcut" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Keyboard Shortcut]"
+          }
+        }
+      }
     },
     "Language" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Language]"
+          }
+        }
+      }
     },
     "Launch at login" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Launch at login]"
+          }
+        }
+      }
     },
     "Let us know if you are interested" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Let us know if you are interested]"
+          }
+        }
+      }
     },
     "Let us Take Care of it" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Let us Take Care of it]"
+          }
+        }
+      }
     },
     "Models we plan to support" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Models we plan to support]"
+          }
+        }
+      }
     },
     "Nevermind" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Nevermind]"
+          }
+        }
+      }
     },
     "OK" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [OK]"
+          }
+        }
+      }
     },
     "OpenAI API Key:" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [OpenAI API Key:]"
+          }
+        }
+      }
     },
     "Output" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Output]"
+          }
+        }
+      }
     },
     "Play Sounds" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Play Sounds]"
+          }
+        }
+      }
     },
     "Save Transcriptions" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Save Transcriptions]"
+          }
+        }
+      }
     },
     "Send the transcript to ChatGPT for context-aware corrections" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Send the transcript to ChatGPT for context-aware corrections]"
+          }
+        }
+      }
     },
     "Stop" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Stop]"
+          }
+        }
+      }
     },
     "System Prompt" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [System Prompt]"
+          }
+        }
+      }
     },
     "Texture" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Texture]"
+          }
+        }
+      }
     },
     "Use this model to transcribe" : {
-      "comment" : "Text to show when the user hovers on activation checkbox for a speech-to-text model"
+      "comment" : "Text to show when the user hovers on activation checkbox for a speech-to-text model",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Use this model to transcribe]"
+          }
+        }
+      }
     },
     "Whisper distinguishes itself from traditional voice-to-text models by incorporating characteristics of an LLM model.\nTo enhance accuracy, or make it follow a writing style input an initial prompt.\nKeep in mind that Whisper only considers the first 244 tokens of the prompt." : {
       "localizations" : {
@@ -144,16 +390,44 @@
       }
     },
     "You can match the word as a exact match by choosing `string` or you can use a `regex` pattern. All the matches are replaced by the given input. \nLeave it empty if you want to delete the matches." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can match the word as a exact match by choosing `string` or you can use a `regex` pattern. All the matches are replaced by the given input. \nLeave it empty if you want to delete the matches.]"
+          }
+        }
+      }
     },
     "You can start the recording by\n   • clicking on the status bar item or\n   • using the keyboard shortcut defined below" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can start the recording by\n   • clicking on the status bar item or\n   • using the keyboard shortcut defined below]"
+          }
+        }
+      }
     },
     "You can subscribe and we'll run the LLM using your prompts." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can subscribe and we'll run the LLM using your prompts.]"
+          }
+        }
+      }
     },
     "You can use your own API key to use the LLM post process feature." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can use your own API key to use the LLM post process feature.]"
+          }
+        }
+      }
     },
     "Your clipboard does not change" : {
       "extractionState" : "stale",
@@ -167,7 +441,14 @@
       }
     },
     "Your clipboard is not affected" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Your clipboard is not affected]"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
