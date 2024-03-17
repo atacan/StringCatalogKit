@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import StringCatalogKit
 
 final class StringCatalogKitTests: XCTestCase {
