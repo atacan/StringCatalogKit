@@ -37,15 +37,18 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "StringCatalogKitTests",
-            dependencies: ["StringCatalogKit"]
-        ),
-        .testTarget(
             name: "StringCatalogTranslatorTests",
             dependencies: [.StringCatalogTranslator, .CustomDump],
             resources: [
                 .process("TestResources")
             ]
+        ),
+        .executableTarget(name: "StringCatalogTranslatorRun",
+                          dependencies: [.StringCatalogTranslator]
+                         ),
+        .testTarget(
+            name: "StringCatalogKitTests",
+            dependencies: ["StringCatalogKit"]
         ),
         //
         .executableTarget(

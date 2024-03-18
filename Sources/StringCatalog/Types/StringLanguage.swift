@@ -18,5 +18,6 @@ public enum StringLanguage: String, Codable, CodingKey, CodingKeyRepresentable, 
     case english = "en"
     case german = "de"
     case french = "fr"
+    case turkish = "tr"
     // Add any other supported languages here
 }

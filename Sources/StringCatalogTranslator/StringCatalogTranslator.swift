@@ -124,6 +124,8 @@ extension StringLanguage {
             return .DE
         case .french:
             return .FR
+        case .turkish:
+            return .TR
         }
     }
     var deepLSourceLanguage: DeepLURLSessionClient.Components.Schemas.SourceLanguageText {
@@ -134,6 +136,8 @@ extension StringLanguage {
             return .DE
         case .french:
             return .FR
+        case .turkish:
+            return .TR
         }
     }
 }
