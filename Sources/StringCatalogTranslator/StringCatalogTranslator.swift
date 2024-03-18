@@ -23,13 +23,7 @@ public struct StringCatalogTranslator {
 
             for (textToTranslate, stringEntry) in catalog.strings {
 
-                if stringEntry.localizations == nil {
-
-                    group.addTask {
-                        let translation = try? await self.translateWithDeepL(textToTranslate, stringEntry.comment, catalog.sourceLanguage, targetLanguage)
-                        return (textToTranslate, translation)
-                    }
-                } else if stringEntry.localizations?[targetLanguage] == nil {
+                if stringEntry.localizations == nil || stringEntry.localizations?[targetLanguage] == nil {
 
                     group.addTask {
                         let translation = try? await self.translateWithDeepL(textToTranslate, stringEntry.comment, catalog.sourceLanguage, targetLanguage)
