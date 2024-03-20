@@ -18,6 +18,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-custom-dump", from: "1.3.0"),
         //
         .package(path: "../SwiftDeepL"),
+        .package(path: "../OpenAIDependency"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -34,6 +35,7 @@ let package = Package(
                 .Dependencies,
                 .DependenciesMacros,
                 .DeepLURLSessionDependency,
+                .OpenAIDependency,
             ]
         ),
         .testTarget(
@@ -69,4 +71,5 @@ extension Target.Dependency {
     static let DependenciesMacros = Self.product(name: "DependenciesMacros", package: "swift-dependencies")
     static let DeepLURLSessionDependency = Self.product(name: "DeepLURLSessionDependency", package: "SwiftDeepL")
     static let CustomDump = Self.product(name: "CustomDump", package: "swift-custom-dump")
+    static let OpenAIDependency = Self.product(name: "OpenAIDependency", package: "OpenAIDependency")
 }

@@ -21,3 +21,14 @@ public enum StringLanguage: String, Codable, CodingKey, CodingKeyRepresentable, 
     case turkish = "tr"
     // Add any other supported languages here
 }
+
+extension StringLanguage {
+    public var englishDisplayName: String {
+        switch self {
+        case .english: return "English"
+        case .german: return "German"
+        case .french: return "French"
+        case .turkish: return "Turkish"
+        }
+    }
+}

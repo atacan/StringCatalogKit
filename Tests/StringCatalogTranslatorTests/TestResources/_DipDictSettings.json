@@ -6,7 +6,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: []"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: []"
           }
         }
       }
@@ -16,7 +16,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [  Click here to go to OpenAI and get your key]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [  Click here to go to OpenAI and get your key]"
           }
         }
       }
@@ -26,7 +26,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [*Disk*: %@]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [*Disk*: %@]"
           }
         }
       }
@@ -36,7 +36,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [*Memory*: %@]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [*Memory*: %@]"
           }
         }
       }
@@ -46,7 +46,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [%.2f]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [%.2f]"
           }
         }
       }
@@ -56,7 +56,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Animate]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Animate]"
           }
         }
       }
@@ -66,7 +66,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Background Theme]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Background Theme]"
           }
         }
       }
@@ -77,7 +77,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Bring Your Own API Key]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Bring Your Own API Key]"
           }
         }
       }
@@ -87,7 +87,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Delete]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Delete]"
           }
         }
       }
@@ -97,7 +97,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Do you want to delete this model from disk?]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Do you want to delete this model from disk?]"
           }
         }
       }
@@ -107,7 +107,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Do you want to stop downloading this model?]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Do you want to stop downloading this model?]"
           }
         }
       }
@@ -117,7 +117,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Download the model first to activate it]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Download the model first to activate it]"
           }
         }
       }
@@ -127,7 +127,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enable GPT post-transcription process]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enable GPT post-transcription process]"
           }
         }
       }
@@ -137,7 +137,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enabled]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enabled]"
           }
         }
       }
@@ -147,7 +147,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enter your API Key to enable this feature]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Enter your API Key to enable this feature]"
           }
         }
       }
@@ -157,7 +157,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [GPT Model]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [GPT Model]"
           }
         }
       }
@@ -167,7 +167,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [If you use only one language choose that. Otherwise you can choose \"Auto\" to auto-detect it.]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [If you use only one language choose that. Otherwise you can choose \"Auto\" to auto-detect it.]"
           }
         }
       }
@@ -177,7 +177,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Initial Prompt]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Initial Prompt]"
           }
         }
       }
@@ -187,7 +187,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Input]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Input]"
           }
         }
       }
@@ -197,7 +197,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Insert by]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Insert by]"
           }
         }
       }
@@ -207,7 +207,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Keyboard Shortcut]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Keyboard Shortcut]"
           }
         }
       }
@@ -217,7 +217,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Language]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Language]"
           }
         }
       }
@@ -227,7 +227,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Launch at login]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Launch at login]"
           }
         }
       }
@@ -237,7 +237,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Let us know if you are interested]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Let us know if you are interested]"
           }
         }
       }
@@ -247,7 +247,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Let us Take Care of it]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Let us Take Care of it]"
           }
         }
       }
@@ -257,7 +257,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Models we plan to support]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Models we plan to support]"
           }
         }
       }
@@ -267,7 +267,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Nevermind]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Nevermind]"
           }
         }
       }
@@ -277,7 +277,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [OK]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [OK]"
           }
         }
       }
@@ -287,7 +287,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [OpenAI API Key:]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [OpenAI API Key:]"
           }
         }
       }
@@ -297,7 +297,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Output]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Output]"
           }
         }
       }
@@ -307,7 +307,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Play Sounds]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Play Sounds]"
           }
         }
       }
@@ -317,7 +317,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Save Transcriptions]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Save Transcriptions]"
           }
         }
       }
@@ -327,7 +327,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Send the transcript to ChatGPT for context-aware corrections]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Send the transcript to ChatGPT for context-aware corrections]"
           }
         }
       }
@@ -337,7 +337,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Stop]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Stop]"
           }
         }
       }
@@ -347,7 +347,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [System Prompt]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [System Prompt]"
           }
         }
       }
@@ -357,7 +357,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Texture]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Texture]"
           }
         }
       }
@@ -368,7 +368,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Use this model to transcribe]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Use this model to transcribe]"
           }
         }
       }
@@ -394,7 +394,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can match the word as a exact match by choosing `string` or you can use a `regex` pattern. All the matches are replaced by the given input. \nLeave it empty if you want to delete the matches.]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can match the word as a exact match by choosing `string` or you can use a `regex` pattern. All the matches are replaced by the given input. \nLeave it empty if you want to delete the matches.]"
           }
         }
       }
@@ -404,7 +404,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can start the recording by\n   • clicking on the status bar item or\n   • using the keyboard shortcut defined below]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can start the recording by\n   • clicking on the status bar item or\n   • using the keyboard shortcut defined below]"
           }
         }
       }
@@ -414,7 +414,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can subscribe and we'll run the LLM using your prompts.]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can subscribe and we'll run the LLM using your prompts.]"
           }
         }
       }
@@ -424,7 +424,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can use your own API key to use the LLM post process feature.]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [You can use your own API key to use the LLM post process feature.]"
           }
         }
       }
@@ -445,7 +445,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Your clipboard is not affected]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [Your clipboard is not affected]"
           }
         }
       }
