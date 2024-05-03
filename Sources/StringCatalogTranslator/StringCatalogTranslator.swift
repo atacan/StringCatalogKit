@@ -164,6 +164,14 @@ extension StringLanguage {
             return .FR
         case .turkish:
             return .TR
+        case .polish:
+            return .PL
+        case .spanish:
+            return .ES
+        case .chineseSimplified:
+            return .ZH
+        case .japanese:
+            return .JA
         }
     }
     var deepLSourceLanguage: DeepLURLSessionClient.Components.Schemas.SourceLanguageText {
@@ -176,6 +184,14 @@ extension StringLanguage {
             return .FR
         case .turkish:
             return .TR
+        case .polish:
+            return .PL
+        case .spanish:
+            return .ES
+        case .chineseSimplified:
+            return .ZH
+        case .japanese:
+            return .JA
         }
     }
 }

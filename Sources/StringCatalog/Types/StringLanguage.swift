@@ -19,6 +19,10 @@ public enum StringLanguage: String, Codable, CodingKey, CodingKeyRepresentable, 
     case german = "de"
     case french = "fr"
     case turkish = "tr"
+    case polish = "pl"
+    case spanish = "es"
+    case chineseSimplified = "zh-Hans"
+    case japanese = "ja"
     // Add any other supported languages here
 }
 
@@ -29,6 +33,10 @@ extension StringLanguage {
         case .german: return "German"
         case .french: return "French"
         case .turkish: return "Turkish"
+        case .polish: return "Polish"
+        case .spanish: return "Spanish"
+        case .chineseSimplified: return "Chinese Simplified"
+        case .japanese: return "Japanese"
         }
     }
 }
