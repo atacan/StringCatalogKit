@@ -33,6 +33,20 @@ final class StringCatalogCodableTests: XCTestCase {
         XCTAssertNil(oneLocalization.stringUnit)
         XCTAssertNotNil(oneLocalization.stringSet)
     }
+    
+    func testEncodeSameStringUnit() throws {
+        let catalogJson: String = try String(contentsOf: InputFiles.AppShortcuts)
+        let catalog: StringCatalog = try JSONDecoder().decode(StringCatalog.self, from: catalogJson.data(using: .utf8)!)
+        
+        XCTAssertNoDifference(catalogJson, try catalog.encodePrettyToString())
+    }
+
+    func testEncodeSameStringSet() throws {
+        let catalogJson: String = try String(contentsOf: InputFiles.AppShortcuts)
+        let catalog: StringCatalog = try JSONDecoder().decode(StringCatalog.self, from: catalogJson.data(using: .utf8)!)
+        
+        XCTAssertNoDifference(catalogJson, try catalog.encodePrettyToString())
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
