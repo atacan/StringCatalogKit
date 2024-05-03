@@ -87,4 +87,8 @@ enum InputFiles {
         return Self.testResourcesDirectory.appending(component: "DipDictSettings.xcstrings")
     }
 
+    static var AppShortcuts: URL {
+        return Self.testResourcesDirectory.appending(component: "AppShortcuts.xcstrings")
+    }
+
 }

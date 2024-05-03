@@ -42,7 +42,7 @@ let package = Package(
             name: "StringCatalogTranslatorTests",
             dependencies: [.StringCatalogTranslator, .CustomDump],
             resources: [
-                .process("TestResources")
+                .copy("TestResources")
             ]
         ),
         .executableTarget(name: "StringCatalogTranslatorRun",

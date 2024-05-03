@@ -1,0 +1,112 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "${applicationName} insert latest" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} Letzte einfügen",
+              "${applicationName} Letzte",
+              "${applicationName} Letzte Notiz"
+            ]
+          }
+        },
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "${applicationName} insert latest",
+              "${applicationName} latest",
+              "${applicationName} latest note"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} insérer le dernier",
+              "${applicationName} le dernier",
+              "${applicationName} la dernière note"
+            ]
+          }
+        },
+        "pl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} najnowszą notatkę",
+              "${applicationName} najnowszy",
+              "${applicationName} wstawić najnowszą"
+            ]
+          }
+        },
+        "tr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} sonuncu",
+              "${applicationName} en sonuncu",
+              "${applicationName} son notu yaz"
+            ]
+          }
+        }
+      }
+    },
+    "${applicationName} record" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} aufnehmen",
+              "${applicationName} fang an"
+            ]
+          }
+        },
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "${applicationName} record",
+              "${applicationName} start"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} enregistrer",
+              "${applicationName} commencez"
+            ]
+          }
+        },
+        "pl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} Nagrywanie",
+              "${applicationName} start"
+            ]
+          }
+        },
+        "tr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} kaydet",
+              "${applicationName} kayıt",
+              "${applicationName} başla"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
