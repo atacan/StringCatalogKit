@@ -11,31 +11,49 @@ public struct StringCatalogTranslator {
 
     public func translateCatalog(_ catalog: StringCatalog, to targetLanguage: StringLanguage, translationService: TranslationService) async throws -> StringCatalog {
         var newCatalog = catalog
+        let sourceLanguage = catalog.sourceLanguage
 
-        await withTaskGroup(of: (String, String?).self) { group in
+        await withTaskGroup(of: (String, String, String?).self) { group in
 
-            for (textToTranslate, stringEntry) in catalog.strings where stringEntry.localizations == nil || stringEntry.localizations?[targetLanguage] == nil {
+            for (stringKey, stringEntry) in catalog.strings {
+                let textToTranslate: String
+                
+                if let localizations = stringEntry.localizations { // there is some localization
+                    if let targetLocalization = localizations[targetLanguage] { // there is localization in the target language already. skip
+                        continue
+                    } else if let sourceLocalization = localizations[sourceLanguage] { // there is localization in the source language. use it
+                        if let stringUnit = sourceLocalization.stringUnit { // stringUnit not stringSet
+                            textToTranslate = stringUnit.value
+                        } else { // stringSet
+                            continue
+                        }
+                    } else { // there is localization in another language other than source or target
+                        textToTranslate = stringKey
+                    }
+                } else {
+                    textToTranslate = stringKey
+                }
 
                 group.addTask {
                     switch translationService {
                     case .deepL:
-                        let translation = try? await self.translateWithDeepL(textToTranslate, stringEntry.comment, catalog.sourceLanguage, targetLanguage)
-                        return (textToTranslate, translation)
+                        let translation = try? await self.translateWithDeepL(textToTranslate, stringEntry.comment, sourceLanguage, targetLanguage)
+                        return (stringKey, textToTranslate, translation)
                     case .chatgpt:
-                        let translation = try? await self.translateWithChatGPT(textToTranslate, stringEntry.comment, catalog.sourceLanguage, targetLanguage)
-                        return (textToTranslate, translation)
+                        let translation = try? await self.translateWithChatGPT(textToTranslate, stringEntry.comment, sourceLanguage, targetLanguage)
+                        return (stringKey, textToTranslate, translation)
                     }
                 }
             }
 
-            for await (original, translation) in group {
+            for await (stringKey, original, translation) in group {
 
                 if let translation {
-                    if newCatalog.strings[original]?.localizations == nil {
-                        newCatalog.strings[original]?.localizations = [StringLanguage: StringLocalization]()
+                    if newCatalog.strings[stringKey]?.localizations == nil {
+                        newCatalog.strings[stringKey]?.localizations = [StringLanguage: StringLocalization]()
                     }
 
-                    newCatalog.strings[original]?.localizations?[targetLanguage] = StringLocalization(stringUnit: .init(state: .translated, value: translation))
+                    newCatalog.strings[stringKey]?.localizations?[targetLanguage] = StringLocalization(stringUnit: .init(state: .translated, value: translation))
                 }
 
                 //                #if DEBUG

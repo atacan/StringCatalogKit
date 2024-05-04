@@ -16,7 +16,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [  Click here to go to OpenAI and get your key]"
+            "value" : "This is a DeepL translation from StringLanguage(stringValue: \"en\", intValue: nil) to StringLanguage(stringValue: \"de\", intValue: nil). Original text: [HERE_IS_SOURCE_LANGUAGE_TRANSLATION]"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HERE_IS_SOURCE_LANGUAGE_TRANSLATION"
           }
         }
       }

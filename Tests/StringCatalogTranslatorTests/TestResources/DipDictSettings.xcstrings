@@ -5,7 +5,14 @@
 
     },
     "  Click here to go to OpenAI and get your key" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HERE_IS_SOURCE_LANGUAGE_TRANSLATION"
+          }
+        }
+      }
     },
     "*Disk*: %@" : {
 

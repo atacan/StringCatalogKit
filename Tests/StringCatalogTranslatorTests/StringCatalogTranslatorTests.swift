@@ -37,6 +37,36 @@ final class StringCatalogTranslatorTests: XCTestCase {
         }
     }
 
+    func testNotTranslateStringSet() async throws {
+        let catalogJson = try String(contentsOf: InputFiles.StringSetUntranslated)
+        let catalog = try JSONDecoder().decode(StringCatalog.self, from: catalogJson.data(using: .utf8)!)
+        
+        try await withDependencies {
+            $0.stringCatalogTranslator = .previewValue
+        } operation: {
+            let translatedCatalog = try await stringCatalogTranslator.translateCatalog(catalog, to: .german, translationService: .deepL)
+            
+            XCTAssertNoDifference(catalog, translatedCatalog)
+            XCTAssertNoDifference(catalogJson, try catalog.encodePrettyToString())
+            XCTAssertNoDifference(catalogJson, try translatedCatalog.encodePrettyToString())
+        }
+    }
+
+    func testDontTouchTranslatedStringSet() async throws {
+        let catalogJson = try String(contentsOf: InputFiles.AppShortcuts)
+        let catalog = try JSONDecoder().decode(StringCatalog.self, from: catalogJson.data(using: .utf8)!)
+        
+        try await withDependencies {
+            $0.stringCatalogTranslator = .previewValue
+        } operation: {
+            let translatedCatalog = try await stringCatalogTranslator.translateCatalog(catalog, to: .german, translationService: .deepL)
+            
+            XCTAssertNoDifference(catalog, translatedCatalog)
+            XCTAssertNoDifference(catalogJson, try catalog.encodePrettyToString())
+            XCTAssertNoDifference(catalogJson, try translatedCatalog.encodePrettyToString())
+        }
+    }
+
     func testDeepL() async throws {
         let catalogJson = try String(contentsOf: InputFiles.DipDictSettings)
 
@@ -89,6 +119,10 @@ enum InputFiles {
 
     static var AppShortcuts: URL {
         return Self.testResourcesDirectory.appending(component: "AppShortcuts.xcstrings")
+    }
+    
+    static var StringSetUntranslated: URL {
+        return Self.testResourcesDirectory.appending(component: "StringSetUntranslated.xcstrings")
     }
 
 }
