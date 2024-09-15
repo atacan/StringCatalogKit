@@ -29,13 +29,25 @@ public enum TranslateStringCatalog {
             print("🌐", targetLanguage)
         }
     }
+    
+    public static func stringCatalogs(at directory: URL) throws -> [StringCatalog] {
+        var catalogs = [StringCatalog]()
+        for file in try stringCatalogFiles(at: directory) {
+            let json = try String(contentsOf: file)
+            let jsonData = json.data(using: .utf8)!
+            let decoder = JSONDecoder()
+            let catalog = try decoder.decode(StringCatalog.self, from: jsonData)
+            catalogs.append(catalog)
+        }
+        return catalogs
+    }
 
     /// ```swift
     /// dump(
     ///     try stringCatalogFiles(at: URL(filePath: "/Users/atacan/Documents/myway/Repositories/dipdict_libraries/Sources"))
     /// )
     /// ```
-    static func stringCatalogFiles(at directory: URL) throws -> [URL] {
+    public static func stringCatalogFiles(at directory: URL) throws -> [URL] {
         var files = [URL]()
 
         if let enumerator = FileManager.default.enumerator(at: directory, includingPropertiesForKeys: [.isRegularFileKey], options: [.skipsHiddenFiles, .skipsPackageDescendants]) {

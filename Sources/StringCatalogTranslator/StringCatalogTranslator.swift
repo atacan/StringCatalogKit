@@ -190,6 +190,16 @@ extension StringLanguage {
             return .ZH
         case .japanese:
             return .JA
+        case .italian:
+            return .IT
+        case .korean:
+            return .KO
+        case .portuguesePortugal:
+            return .PT_hyphen_PT
+        case .portugueseBrazil:
+            return .PT_hyphen_BR
+        case .russian:
+            return .RU
         }
     }
     var deepLSourceLanguage: DeepLURLSessionClient.Components.Schemas.SourceLanguageText {
@@ -210,6 +220,16 @@ extension StringLanguage {
             return .ZH
         case .japanese:
             return .JA
+        case .italian:
+            return .IT
+        case .korean:
+            return .KO
+        case .portuguesePortugal:
+            return .PT
+        case .portugueseBrazil:
+            return .PT
+        case .russian:
+            return .RU
         }
     }
 }
