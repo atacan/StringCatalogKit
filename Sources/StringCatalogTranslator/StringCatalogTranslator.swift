@@ -1,3 +1,4 @@
+import OpenAI
 import ConcurrencyExtras
 import DeepLURLSessionClient
 import DeepLURLSessionDependency
@@ -70,7 +71,7 @@ public struct StringCatalogTranslator {
 extension StringCatalogTranslator: DependencyKey {
     public static var liveValue: Self = {
         @Dependency(\.deepLURLSession) var deepLURLSession
-        @Dependency(OpenAIUrlSessionDependency.self) var openAi
+        @Dependency(\.openAI) var openAi
 
         return Self(
             translateWithDeepL: { text, comment, sourceLanguage, targetLanguage in
@@ -97,47 +98,35 @@ extension StringCatalogTranslator: DependencyKey {
             },
             translateWithChatGPT: { text, comment, sourceLanguage, targetLanguage in
                 let systemPrompt = """
-                    You are a highly skilled translator with expertise in many languages. Your task is to accurately translate the \(sourceLanguage.englishDisplayName) text into \(targetLanguage.englishDisplayName) while preserving the meaning, tone, and nuance of the original text. Please maintain proper grammar, spelling, and punctuation in the translated version. The content will be given with a hint to understand the context. The content is the copy text of a macOS app that provides speech-to-text functionality. Only output the translation without any comment.
+                    You’re a skilled translator with extensive experience in translating \(sourceLanguage) text to \(targetLanguage) while maintaining the original formatting, especially for markdown. Your expertise allows you to ensure that nuances in meaning and cultural context are carefully preserved in the translation, making it accessible and appropriate for \(targetLanguage) speakers.
 
-                    Example Input:
+                    Your task is to translate \(sourceLanguage) UI copy of an macOS app formatted in markdown to \(targetLanguage), ensuring that the markdown formatting remains intact.
 
-                    <content>
-                    You can start the recording by
-                     • clicking on the status bar item or
-                     • using the keyboard shortcut defined below
-                    </content>
-                    <hint>
-                    the description for the audio recording settings
-                    </hint>
-                    <output>
-                    Sie können die Aufnahme starten, indem Sie
-                     • auf das Symbol in der Statusleiste klicken oder
-                     • die unten definierte Tastenkombination verwenden
+                    Please keep in mind any specific context or tone that should be maintained during the translation, particularly regarding cultural references or idiomatic expressions. Also, ensure that any headers, lists, or emphasis in markdown are preserved in the \(targetLanguage) version.
+
+                    For further clarity, here’s how I would like the output formatted:
+                    - For headings, translate the text while maintaining the heading level (e.g., # for H1, ## for H2).
+                    - For lists, keep the bullet points or numbering intact while translating the content.
+                    - For emphasized text (bold or italics), use the appropriate markdown syntax in \(targetLanguage).
+                    
+                    Only output the translation without backticks.
+                    """
+                
+                let userPrompt = """
+                    Here is the text I need you to translate delimited by triple backticks:
+                    ```
+                    \(text)
+                    ```
                     """
 
-                let userPrompt = {
-                    var content = "<content>\n\(text)\n</content>"
-                    guard let comment else { return content + "\n<output>\n" }
-                    return content + "\n<hint>\n\(comment)\n</hint>" + "\n<output>\n"
-                }()
-
                 let client = openAi.client()
-                let response = try await client.createChatCompletion(
-                    body: .json(
-                        .init(
-                            messages: [
-                                .ChatCompletionRequestSystemMessage(.init(content: systemPrompt, role: .system)),
-                                .ChatCompletionRequestUserMessage(.init(content: .case1(userPrompt), role: .user)),
-                            ],
-                            model: .init(value2: .gpt_hyphen_3_period_5_hyphen_turbo)
-                        )
-                    )
-                )
-                guard let translation = try response.ok.body.json.choices[0].message.content else {
-                    throw StringCatalogTranslator.Failure.translationsPayloadNil
-                }
-
-                return translation
+                let query = ChatQuery(messages: [
+                    .system(.init(content: systemPrompt)),
+                    .user(.init(content: .string(userPrompt)))
+                ], model: .gpt4_o)
+                
+                let response = try await client.chats(query: query)
+                return response.choices.first?.message.content?.string ?? "NO CHOICE"
             }
         )
     }()
