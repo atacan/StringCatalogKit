@@ -97,23 +97,32 @@ extension StringCatalogTranslator: DependencyKey {
                 return translation
             },
             translateWithChatGPT: { text, comment, sourceLanguage, targetLanguage in
+                let additionalContext = if let comment {
+                    " Additional context from the author: \(comment)."
+                } else {
+                    ""
+                }
+                
                 let systemPrompt = """
                     You’re a skilled translator with extensive experience in translating \(sourceLanguage) text to \(targetLanguage) while maintaining the original formatting, especially for markdown. Your expertise allows you to ensure that nuances in meaning and cultural context are carefully preserved in the translation, making it accessible and appropriate for \(targetLanguage) speakers.
 
-                    Your task is to translate \(sourceLanguage) UI copy of an macOS app formatted in markdown to \(targetLanguage), ensuring that the markdown formatting remains intact.
+                    Your task is to translate a piece of UI of a macOS app written in \(sourceLanguage) to \(targetLanguage) language.
+                    Ensure that the markdown formatting remains intact. The text was taken from Xcode string catalog.
+                    Keep the placeholder values such as ["@", "lld", ".2f", "1$@", "2$@", "3$@", "1$lld", "2$lld"] used in the string catalogs at the meaningfully correct place in the translation.
 
-                    Please keep in mind any specific context or tone that should be maintained during the translation, particularly regarding cultural references or idiomatic expressions. Also, ensure that any headers, lists, or emphasis in markdown are preserved in the \(targetLanguage) version.
+                    Please keep in mind any specific context or tone that should be maintained during the translation, particularly regarding cultural references or idiomatic expressions. The author may add additional context on where the text is used in the UI. Use that information to choose the most suitable translation if there are multiple options.
 
                     For further clarity, here’s how I would like the output formatted:
                     - For headings, translate the text while maintaining the heading level (e.g., # for H1, ## for H2).
                     - For lists, keep the bullet points or numbering intact while translating the content.
                     - For emphasized text (bold or italics), use the appropriate markdown syntax in \(targetLanguage).
+                    - Keep the line breaks intact.
                     
                     Only output the translation without backticks.
                     """
                 
                 let userPrompt = """
-                    Here is the text I need you to translate delimited by triple backticks:
+                    The text I need you to translate is below delimited by triple backticks.\(additionalContext)
                     ```
                     \(text)
                     ```
