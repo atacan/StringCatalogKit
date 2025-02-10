@@ -34,6 +34,10 @@ public struct StringCatalogTranslator {
                 } else {
                     textToTranslate = stringKey
                 }
+                
+                guard !textToTranslate.isEmpty else {
+                    continue
+                }
 
                 group.addTask {
                     switch translationService {
@@ -104,9 +108,9 @@ extension StringCatalogTranslator: DependencyKey {
                 }
                 
                 let systemPrompt = """
-                    You’re a skilled translator with extensive experience in translating \(sourceLanguage) text to \(targetLanguage) while maintaining the original formatting, especially for markdown. Your expertise allows you to ensure that nuances in meaning and cultural context are carefully preserved in the translation, making it accessible and appropriate for \(targetLanguage) speakers.
+                    You’re a skilled translator with extensive experience in translating \(sourceLanguage.englishDisplayName) text to \(targetLanguage.englishDisplayName) while maintaining the original formatting, especially for markdown. Your expertise allows you to ensure that nuances in meaning and cultural context are carefully preserved in the translation, making it accessible and appropriate for \(targetLanguage.englishDisplayName) speakers.
 
-                    Your task is to translate a piece of UI of a macOS app written in \(sourceLanguage) to \(targetLanguage) language.
+                    Your task is to translate a piece of UI of a macOS app written in \(sourceLanguage.englishDisplayName) to \(targetLanguage.englishDisplayName) language.
                     Ensure that the markdown formatting remains intact. The text was taken from Xcode string catalog.
                     Keep the placeholder values such as ["@", "lld", ".2f", "1$@", "2$@", "3$@", "1$lld", "2$lld"] used in the string catalogs at the meaningfully correct place in the translation.
 
@@ -115,7 +119,7 @@ extension StringCatalogTranslator: DependencyKey {
                     For further clarity, here’s how I would like the output formatted:
                     - For headings, translate the text while maintaining the heading level (e.g., # for H1, ## for H2).
                     - For lists, keep the bullet points or numbering intact while translating the content.
-                    - For emphasized text (bold or italics), use the appropriate markdown syntax in \(targetLanguage).
+                    - For emphasized text (bold or italics), use the appropriate markdown syntax in \(targetLanguage.englishDisplayName).
                     - Keep the line breaks intact.
                     
                     Only output the translation without backticks.
@@ -143,10 +147,10 @@ extension StringCatalogTranslator: DependencyKey {
     public static var previewValue: Self {
         Self(
             translateWithDeepL: { text, comment, sourceLanguage, targetLanguage in
-                "This is a DeepL translation from \(sourceLanguage) to \(targetLanguage). Original text: [\(text)]"
+                "This is a DeepL translation from \(sourceLanguage.englishDisplayName) to \(targetLanguage.englishDisplayName). Original text: [\(text)]"
             },
             translateWithChatGPT: { text, comment, sourceLanguage, targetLanguage in
-                "This is a ChatGPT translation from \(sourceLanguage) to \(targetLanguage). Original text: [\(text)]"
+                "This is a ChatGPT translation from \(sourceLanguage.englishDisplayName) to \(targetLanguage.englishDisplayName). Original text: [\(text)]"
             }
         )
     }
