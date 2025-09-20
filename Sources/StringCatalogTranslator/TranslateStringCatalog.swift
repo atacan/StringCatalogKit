@@ -3,6 +3,11 @@ import Foundation
 import StringCatalog
 
 public enum TranslateStringCatalog {
+    static public func translateCatalogFiles(at directories: [URL], to targetLanguages: [StringLanguage], using translationService: StringCatalogTranslator.TranslationService) async throws {
+        for directory in directories {
+            try await translateCatalogFiles(at: directory, to: targetLanguages, using: translationService)
+        }
+    }
     static public func translateCatalogFiles(at directory: URL, to targetLanguages: [StringLanguage], using translationService: StringCatalogTranslator.TranslationService) async throws {
         for language in targetLanguages {
             try await translateCatalogFiles(at: directory, to: language, using: translationService)

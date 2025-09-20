@@ -110,8 +110,8 @@ extension StringCatalogTranslator: DependencyKey {
                 let systemPrompt = """
                     You’re a skilled translator with extensive experience in translating \(sourceLanguage.englishDisplayName) text to \(targetLanguage.englishDisplayName) while maintaining the original formatting, especially for markdown. Your expertise allows you to ensure that nuances in meaning and cultural context are carefully preserved in the translation, making it accessible and appropriate for \(targetLanguage.englishDisplayName) speakers.
 
-                    Your task is to translate a piece of UI of a macOS app written in \(sourceLanguage.englishDisplayName) to \(targetLanguage.englishDisplayName) language.
-                    Ensure that the markdown formatting remains intact. The text was taken from Xcode string catalog.
+                    Your task is to translate a piece of UI of a macOS app written in \(sourceLanguage.englishDisplayName) to \(targetLanguage.englishDisplayName) language. The text was taken from Xcode string catalog.
+                    If there is markdown formatting, ensure that the markdown formatting remains intact.
                     Keep the placeholder values such as ["@", "lld", ".2f", "1$@", "2$@", "3$@", "1$lld", "2$lld"] used in the string catalogs at the meaningfully correct place in the translation.
 
                     Please keep in mind any specific context or tone that should be maintained during the translation, particularly regarding cultural references or idiomatic expressions. The author may add additional context on where the text is used in the UI. Use that information to choose the most suitable translation if there are multiple options.
@@ -132,14 +132,15 @@ extension StringCatalogTranslator: DependencyKey {
                     ```
                     """
 
+                let model = text.count > 500 ? "gpt-4.1" : "gpt-4.1-mini"
                 let client = openAi.client()
                 let query = ChatQuery(messages: [
-                    .system(.init(content: systemPrompt)),
+                    .system(.init(content: .textContent(systemPrompt))),
                     .user(.init(content: .string(userPrompt)))
-                ], model: .gpt4_o)
+                ], model: model)
                 
                 let response = try await client.chats(query: query)
-                return response.choices.first?.message.content?.string ?? "NO CHOICE"
+                return response.choices.first?.message.content ?? "NO CHOICE"
             }
         )
     }()
