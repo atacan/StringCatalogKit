@@ -46,3 +46,23 @@ print(plan.items.filter(\.changed).count)
 let applyReport = try service.apply(plan)
 print(applyReport.writtenFiles)
 ```
+
+## LLM Usage
+
+`CatalogTranslationLLM` provides `LLMTranslator`, which adapts system/user prompts to any model provider:
+
+```swift
+import CatalogTranslation
+import CatalogTranslationLLM
+
+let translator = LLMTranslator { _, systemPrompt, userPrompt in
+    // Call your LLM API here and return translated text.
+    try await myLLMClient.complete(system: systemPrompt, user: userPrompt)
+}
+
+let engine = CatalogTranslationEngine(translator: translator)
+```
+
+For a full runnable example with OpenAI integration, see:
+- `examples/README.md`
+- `examples/Sources/TranslateCatalogWithOpenAI/main.swift`
