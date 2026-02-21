@@ -1,0 +1,29 @@
+# Trufflehog path exclusions
+# One path/pattern per line (glob syntax)
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Checkouts/
+
+# Other dependency/vendor dirs
+vendor/
+node_modules/
+
+# Build artifacts
+DerivedData/
+build/
+dist/
+
+# Lock files
+Package.resolved
+Podfile.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+Gemfile.lock

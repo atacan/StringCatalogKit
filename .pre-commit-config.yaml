@@ -1,0 +1,28 @@
+repos:
+  # -------------------------------------------------------
+  # Gitleaks — pattern-based secret detection
+  # Uses the official pre-commit hook from the gitleaks repo.
+  # The .gitleaks.toml config handles path exclusions.
+  # -------------------------------------------------------
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks
+        args: ['--config=.gitleaks.toml']
+
+  # -------------------------------------------------------
+  # Trufflehog — verification-based secret detection
+  # Uses a LOCAL hook calling the already-installed binary.
+  # This avoids the known issue where the repo-based hook
+  # tries to 'go install' from source and fails.
+  # The .trufflehog-exclude-paths.txt handles exclusions.
+  # -------------------------------------------------------
+  - repo: local
+    hooks:
+      - id: trufflehog
+        name: trufflehog (local)
+        language: system
+        entry: bash -c '/opt/homebrew/bin/trufflehog git file://. --since-commit HEAD --results=verified,unknown --exclude-paths=.trufflehog-exclude-paths.txt --fail'
+        stages: [pre-commit]
+        pass_filenames: false
+        always_run: true

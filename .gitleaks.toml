@@ -1,0 +1,45 @@
+# Gitleaks configuration
+# https://github.com/gitleaks/gitleaks#configuration
+
+title = "Gitleaks config"
+
+# Extend the default rules (don't replace them)
+[extend]
+useDefault = true
+
+# Paths to exclude from scanning
+# These are dependency/build directories that contain
+# test fixtures with fake secrets, not real leaks.
+[allowlist]
+  description = "Global allowlist"
+  paths = [
+    # Swift Package Manager
+    '''\.build/''',
+    '''\.swiftpm/''',
+
+    # CocoaPods
+    '''Pods/''',
+
+    # Dependency checkouts and caches
+    '''Carthage/Checkouts/''',
+    '''vendor/''',
+    '''node_modules/''',
+
+    # Build artifacts
+    '''DerivedData/''',
+    '''build/''',
+    '''dist/''',
+
+    # Package lock files (contain hashes, not secrets)
+    '''Package\.resolved$''',
+    '''Podfile\.lock$''',
+    '''package-lock\.json$''',
+    '''yarn\.lock$''',
+    '''pnpm-lock\.yaml$''',
+    '''Gemfile\.lock$''',
+
+    # Test fixtures that intentionally contain fake secrets
+    '''(test|tests|spec|specs|__tests__)/.*fixtures?/''',
+    '''(test|tests|spec|specs|__tests__)/.*mocks?/''',
+    '''(test|tests|spec|specs|__tests__)/.*stubs?/''',
+  ]
