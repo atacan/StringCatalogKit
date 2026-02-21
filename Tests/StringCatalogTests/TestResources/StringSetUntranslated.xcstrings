@@ -1,0 +1,35 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "${applicationName} insert latest" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "${applicationName} insert latest",
+              "${applicationName} latest",
+              "${applicationName} latest note"
+            ]
+          }
+        }
+      }
+    },
+    "${applicationName} record" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "${applicationName} record",
+              "${applicationName} start"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

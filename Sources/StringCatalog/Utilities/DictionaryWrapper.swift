@@ -70,6 +70,10 @@ extension DictionaryWrapper: Equatable where Self.WrappedValue: Equatable {
 extension DictionaryWrapper: Hashable where Self.WrappedValue: Hashable {
 }
 
+// MARK: - Sendable
+extension DictionaryWrapper: Sendable where Key: Sendable, Value: Sendable, Key.RawValue: Sendable {
+}
+
 // MARK: - Sequence
 extension DictionaryWrapper: Sequence {
     public typealias Element = (key: Key, value: Value)

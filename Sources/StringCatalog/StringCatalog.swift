@@ -1,9 +1,15 @@
 import Foundation
 
-public struct StringCatalog: Codable, Equatable {
-    public var sourceLanguage: StringLanguage
+public struct StringCatalog: Codable, Equatable, Sendable {
+    public var sourceLanguage: LanguageCode
     public var strings: [String: StringEntry]
     public var version: String  // TODO: Use a Version type?
+
+    public init(sourceLanguage: LanguageCode, strings: [String: StringEntry], version: String) {
+        self.sourceLanguage = sourceLanguage
+        self.strings = strings
+        self.version = version
+    }
 }
 
 // MARK: - Init

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct StringLocalization: Codable, Equatable {
+public struct StringLocalization: Codable, Equatable, Sendable {
     public var stringUnit: StringUnit?
     public var stringSet: StringSet?
     public var substitutions: [String: StringSubstitution]?
@@ -13,6 +13,7 @@ public struct StringLocalization: Codable, Equatable {
         variations: StringVariations? = nil
     ) {
         self.stringUnit = stringUnit
+        self.stringSet = stringSet
         self.substitutions = substitutions
         self.variations = variations
     }

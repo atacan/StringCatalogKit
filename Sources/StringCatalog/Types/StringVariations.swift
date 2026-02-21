@@ -1,12 +1,20 @@
 import Foundation
 
-public struct StringVariations: Codable, Equatable {
-    public let device: DictionaryWrapper<DeviceKey, StringVariation>?
-    public let plural: DictionaryWrapper<PluralKey, StringVariation>?
+public struct StringVariations: Codable, Equatable, Sendable {
+    public var device: DictionaryWrapper<DeviceKey, StringVariation>?
+    public var plural: DictionaryWrapper<PluralKey, StringVariation>?
+
+    public init(
+        device: DictionaryWrapper<DeviceKey, StringVariation>? = nil,
+        plural: DictionaryWrapper<PluralKey, StringVariation>? = nil
+    ) {
+        self.device = device
+        self.plural = plural
+    }
 }
 
 extension StringVariations {
-    public struct DeviceKey: Codable, Hashable, RawRepresentable, ExpressibleByStringLiteral {
+    public struct DeviceKey: Codable, Hashable, RawRepresentable, ExpressibleByStringLiteral, Sendable {
         public let rawValue: String
 
         public init(rawValue: String) {
@@ -27,7 +35,7 @@ extension StringVariations {
         public static let other = Self(rawValue: "other")
     }
 
-    public struct PluralKey: Codable, Hashable, RawRepresentable, ExpressibleByStringLiteral {
+    public struct PluralKey: Codable, Hashable, RawRepresentable, ExpressibleByStringLiteral, Sendable {
         public let rawValue: String
 
         public init(rawValue: String) {

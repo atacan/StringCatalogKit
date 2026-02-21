@@ -6,7 +6,7 @@ import Foundation
 ///   "value" : "Diktieren"
 /// }
 /// ```
-public struct StringUnit: Codable, Equatable {
+public struct StringUnit: Codable, Equatable, Sendable {
     public var state: StringUnitState
     public var value: String
 
@@ -26,7 +26,7 @@ public struct StringUnit: Codable, Equatable {
 ///   ]
 /// }
 /// ```
-public struct StringSet: Codable, Equatable {
+public struct StringSet: Codable, Equatable, Sendable {
     public var state: StringUnitState
     public var values: [String]
 
