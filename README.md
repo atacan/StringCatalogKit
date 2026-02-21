@@ -6,7 +6,7 @@
 
 - `StringCatalog`: Codable model types for Xcode string catalogs.
 - `CatalogTranslation`: Translation engine + file planning/apply API.
-- `CatalogTranslationLLMExample`: Optional example adapter for LLM prompt templating.
+- `CatalogTranslationLLM`: LLM adapter with customizable prompt templates.
 
 ## Quick Start
 

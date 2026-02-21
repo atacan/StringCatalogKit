@@ -15,7 +15,7 @@ let package = Package(
     products: [
         .library(name: "StringCatalog", targets: ["StringCatalog"]),
         .library(name: "CatalogTranslation", targets: ["CatalogTranslation"]),
-        .library(name: "CatalogTranslationLLMExample", targets: ["CatalogTranslationLLMExample"]),
+        .library(name: "CatalogTranslationLLM", targets: ["CatalogTranslationLLM"]),
     ],
     dependencies: [],
     targets: [
@@ -27,7 +27,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "CatalogTranslationLLMExample",
+            name: "CatalogTranslationLLM",
             dependencies: [
                 .CatalogTranslation,
             ]
