@@ -46,12 +46,3 @@ print(plan.items.filter(\.changed).count)
 let applyReport = try service.apply(plan)
 print(applyReport.writtenFiles)
 ```
-
-## Migration (Old -> New)
-
-- Removed `swift-dependencies` usage from translation APIs.
-- Removed built-in DeepL/OpenAI hard-coded paths from core.
-- Replaced static `TranslateStringCatalog` entry points with instance APIs:
-  - `CatalogTranslationEngine`
-  - `CatalogFileTranslationService`
-- Replaced closed `StringLanguage` enum in core storage with flexible `LanguageCode`.
