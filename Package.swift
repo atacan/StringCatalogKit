@@ -7,8 +7,6 @@ let package = Package(
     name: "StringCatalogKit",
     platforms: [.macOS(.v14)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(name: "StringCatalogKit", targets: ["StringCatalogKit"]),
         .library(name: "StringCatalog", targets: ["StringCatalog"]),
         .library(name: "StringCatalogTranslator", targets: ["StringCatalogTranslator"]),
     ],
@@ -21,11 +19,6 @@ let package = Package(
         .package(path: "../OpenAIDependency"),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "StringCatalogKit"
-        ),
         .target(name: "StringCatalog"),
         .target(
             name: "StringCatalogTranslator",
@@ -48,10 +41,6 @@ let package = Package(
         .executableTarget(name: "StringCatalogTranslatorRun",
                           dependencies: [.StringCatalogTranslator]
                          ),
-        .testTarget(
-            name: "StringCatalogKitTests",
-            dependencies: ["StringCatalogKit"]
-        ),
         //
         .executableTarget(
             name: "_Playground",

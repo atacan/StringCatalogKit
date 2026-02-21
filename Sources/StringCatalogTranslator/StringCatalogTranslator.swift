@@ -73,7 +73,7 @@ public struct StringCatalogTranslator {
 }
 
 extension StringCatalogTranslator: DependencyKey {
-    public static var liveValue: Self = {
+    public static let liveValue: Self = {
         @Dependency(\.deepLURLSession) var deepLURLSession
         @Dependency(\.openAI) var openAi
 

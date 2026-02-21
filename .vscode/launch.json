@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "type": "lldb",
+            "type": "swift",
             "request": "launch",
             "sourceLanguages": [
                 "swift"
@@ -9,11 +9,12 @@
             "args": [],
             "cwd": "${workspaceFolder:StringCatalogKit}",
             "name": "Debug _Playground",
-            "program": "${workspaceFolder:StringCatalogKit}/.build/debug/_Playground",
-            "preLaunchTask": "swift: Build Debug _Playground"
+            "preLaunchTask": "swift: Build Debug _Playground",
+            "target": "_Playground",
+            "configuration": "debug"
         },
         {
-            "type": "lldb",
+            "type": "swift",
             "request": "launch",
             "sourceLanguages": [
                 "swift"
@@ -21,11 +22,12 @@
             "args": [],
             "cwd": "${workspaceFolder:StringCatalogKit}",
             "name": "Release _Playground",
-            "program": "${workspaceFolder:StringCatalogKit}/.build/release/_Playground",
-            "preLaunchTask": "swift: Build Release _Playground"
+            "preLaunchTask": "swift: Build Release _Playground",
+            "target": "_Playground",
+            "configuration": "release"
         },
         {
-            "type": "lldb",
+            "type": "swift",
             "request": "launch",
             "sourceLanguages": [
                 "swift"
@@ -33,11 +35,12 @@
             "args": [],
             "cwd": "${workspaceFolder:StringCatalogKit}",
             "name": "Debug StringCatalogTranslatorRun",
-            "program": "${workspaceFolder:StringCatalogKit}/.build/debug/StringCatalogTranslatorRun",
-            "preLaunchTask": "swift: Build Debug StringCatalogTranslatorRun"
+            "preLaunchTask": "swift: Build Debug StringCatalogTranslatorRun",
+            "target": "StringCatalogTranslatorRun",
+            "configuration": "debug"
         },
         {
-            "type": "lldb",
+            "type": "swift",
             "request": "launch",
             "sourceLanguages": [
                 "swift"
@@ -45,8 +48,9 @@
             "args": [],
             "cwd": "${workspaceFolder:StringCatalogKit}",
             "name": "Release StringCatalogTranslatorRun",
-            "program": "${workspaceFolder:StringCatalogKit}/.build/release/StringCatalogTranslatorRun",
-            "preLaunchTask": "swift: Build Release StringCatalogTranslatorRun"
+            "preLaunchTask": "swift: Build Release StringCatalogTranslatorRun",
+            "target": "StringCatalogTranslatorRun",
+            "configuration": "release"
         }
     ]
 }
