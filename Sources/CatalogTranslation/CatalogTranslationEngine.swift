@@ -142,7 +142,7 @@ private extension CatalogTranslationEngine {
 
         for (stringKey, stringEntry) in catalog.strings {
             let sourceLocalization = stringEntry.localizations?[sourceLanguage]
-            let targetLocalization = stringEntry.localizations?[targetLanguage]
+            let targetLocalization = localizedValue(for: targetLanguage, in: stringEntry.localizations)
 
             if targetLocalization?.stringUnit == nil {
                 let text = sourceLocalization?.stringUnit?.value ?? stringKey
@@ -315,7 +315,8 @@ private extension CatalogTranslationEngine {
         }
 
         var localizations = entry.localizations ?? [:]
-        var targetLocalization = localizations[targetLanguage] ?? StringLocalization()
+        let targetLocalizationKey = canonicalLocalizationKey(for: targetLanguage, in: localizations) ?? targetLanguage
+        var targetLocalization = localizations[targetLocalizationKey] ?? StringLocalization()
 
         switch segment {
         case .stringUnit:
@@ -353,9 +354,33 @@ private extension CatalogTranslationEngine {
             )
         }
 
-        localizations[targetLanguage] = targetLocalization
+        localizations[targetLocalizationKey] = targetLocalization
         entry.localizations = localizations
         catalog.strings[stringKey] = entry
+    }
+
+    func localizedValue(
+        for language: LanguageCode,
+        in localizations: [LanguageCode: StringLocalization]?
+    ) -> StringLocalization? {
+        guard let localizations else {
+            return nil
+        }
+
+        return localizations[language] ?? localizations[canonicalLocalizationKey(for: language, in: localizations) ?? language]
+    }
+
+    func canonicalLocalizationKey(
+        for language: LanguageCode,
+        in localizations: [LanguageCode: StringLocalization]
+    ) -> LanguageCode? {
+        localizations.keys.first { localizedKey in
+            languageCodesMatch(localizedKey, language)
+        }
+    }
+
+    func languageCodesMatch(_ lhs: LanguageCode, _ rhs: LanguageCode) -> Bool {
+        lhs.rawValue.caseInsensitiveCompare(rhs.rawValue) == .orderedSame
     }
 
     func applyVariation(

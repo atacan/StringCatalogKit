@@ -80,6 +80,73 @@ final class CatalogTranslationEngineTests: XCTestCase {
         XCTAssertEqual(substitutionPlural, "de::One file")
     }
 
+    func testSkipsStringUnitWhenTargetTranslationAlreadyExists() async throws {
+        let recorder = TranslationRequestRecorder()
+        let translator = ClosureTranslator { request in
+            await recorder.record(request)
+            return "de::\(request.text)"
+        }
+
+        let engine = CatalogTranslationEngine(translator: translator)
+        let catalog = StringCatalog(
+            sourceLanguage: .english,
+            strings: [
+                "Hello": StringEntry(
+                    localizations: [
+                        .english: StringLocalization(stringUnit: StringUnit(state: .translated, value: "Hello")),
+                        .german: StringLocalization(stringUnit: StringUnit(state: .translated, value: "Hallo"))
+                    ]
+                )
+            ],
+            version: "1.0"
+        )
+
+        let result = try await engine.translateCatalog(catalog, to: .german, mode: .bestEffort)
+        let recordedCount = await recorder.count
+
+        XCTAssertEqual(result.report.stats.attemptedSegments, 0)
+        XCTAssertEqual(result.report.stats.translatedSegments, 0)
+        XCTAssertEqual(recordedCount, 0)
+        XCTAssertEqual(
+            result.catalog.strings["Hello"]?.localizations?[.german]?.stringUnit?.value,
+            "Hallo"
+        )
+    }
+
+    func testMatchesTargetLanguageCaseInsensitiveAndDoesNotCreateDuplicateLocalizationKey() async throws {
+        let recorder = TranslationRequestRecorder()
+        let translator = ClosureTranslator { request in
+            await recorder.record(request)
+            return "pt::\(request.text)"
+        }
+
+        let engine = CatalogTranslationEngine(translator: translator)
+        let lowercaseBrazilianPortuguese = LanguageCode(rawValue: "pt-br")
+        let catalog = StringCatalog(
+            sourceLanguage: .english,
+            strings: [
+                "Hello": StringEntry(
+                    localizations: [
+                        .english: StringLocalization(stringUnit: StringUnit(state: .translated, value: "Hello")),
+                        .portugueseBrazil: StringLocalization(stringUnit: StringUnit(state: .translated, value: "Olá"))
+                    ]
+                )
+            ],
+            version: "1.0"
+        )
+
+        let result = try await engine.translateCatalog(catalog, to: lowercaseBrazilianPortuguese, mode: .bestEffort)
+        let recordedCount = await recorder.count
+
+        XCTAssertEqual(result.report.stats.attemptedSegments, 0)
+        XCTAssertEqual(recordedCount, 0)
+
+        let localizations = try XCTUnwrap(result.catalog.strings["Hello"]?.localizations)
+        XCTAssertTrue(localizations.keys.contains(.portugueseBrazil))
+        XCTAssertFalse(localizations.keys.contains(lowercaseBrazilianPortuguese))
+        XCTAssertEqual(localizations[.portugueseBrazil]?.stringUnit?.value, "Olá")
+    }
+
     func testFilePlanIsDryRunAndApplyWritesChanges() async throws {
         let translator = ClosureTranslator { request in
             "de::\(request.text)"
@@ -119,6 +186,18 @@ private struct ClosureTranslator: CatalogTextTranslator {
 
     func translate(_ request: TranslationRequest) async throws -> String {
         try await closure(request)
+    }
+}
+
+private actor TranslationRequestRecorder {
+    private(set) var requests: [TranslationRequest] = []
+
+    func record(_ request: TranslationRequest) {
+        requests.append(request)
+    }
+
+    var count: Int {
+        requests.count
     }
 }
 
