@@ -22,6 +22,8 @@ public struct CatalogTranslationEngine: Sendable {
         var failures = [TranslationFailure]()
         var successfulTranslations = [(job: Job, translatedText: String)]()
 
+        // `withThrowingTaskGroup` can start all jobs at once. This semaphore enforces the
+        // user-configured cap on in-flight translation requests (API rate limits / resource use).
         let semaphore = AsyncSemaphore(value: options.maxConcurrentRequests)
 
         do {
@@ -431,6 +433,8 @@ private extension CatalogTranslationEngine {
     }
 }
 
+// Actor-backed semaphore used to safely coordinate permits across many child tasks.
+// This is only for throttling concurrent translation requests.
 private actor AsyncSemaphore {
     private var value: Int
     private var waiters: [CheckedContinuation<Void, Never>] = []
