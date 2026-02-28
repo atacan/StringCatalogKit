@@ -1,5 +1,8 @@
 # StringCatalogKit
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fatacan%2FStringCatalogKit%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/atacan/StringCatalogKit)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fatacan%2FStringCatalogKit%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/atacan/StringCatalogKit)
+
 `StringCatalogKit` provides model types for `.xcstrings` files and a provider-agnostic translation engine.
 
 ## Products
