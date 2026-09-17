@@ -113,6 +113,36 @@ final class CatalogTranslationEngineTests: XCTestCase {
         )
     }
 
+    func testSkipsEntriesMarkedNotToTranslate() async throws {
+        let recorder = TranslationRequestRecorder()
+        let translator = ClosureTranslator { request in
+            await recorder.record(request)
+            return "de::\(request.text)"
+        }
+        let engine = CatalogTranslationEngine(translator: translator)
+        let catalog = StringCatalog(
+            sourceLanguage: .english,
+            strings: [
+                "Product Name": StringEntry(
+                    localizations: [
+                        .english: StringLocalization(
+                            stringUnit: StringUnit(state: .translated, value: "StringCatalogKit")
+                        )
+                    ],
+                    shouldTranslate: false
+                )
+            ],
+            version: "1.0"
+        )
+
+        let result = try await engine.translateCatalog(catalog, to: .german)
+        let recordedCount = await recorder.count
+
+        XCTAssertEqual(result.report.stats.attemptedSegments, 0)
+        XCTAssertEqual(recordedCount, 0)
+        XCTAssertNil(result.catalog.strings["Product Name"]?.localizations?[.german])
+    }
+
     func testMatchesTargetLanguageCaseInsensitiveAndDoesNotCreateDuplicateLocalizationKey() async throws {
         let recorder = TranslationRequestRecorder()
         let translator = ClosureTranslator { request in
