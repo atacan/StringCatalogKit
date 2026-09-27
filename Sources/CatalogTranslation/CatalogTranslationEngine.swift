@@ -143,6 +143,10 @@ private extension CatalogTranslationEngine {
         let sourceLanguage = catalog.sourceLanguage
 
         for (stringKey, stringEntry) in catalog.strings {
+            guard stringEntry.shouldTranslate != false else {
+                continue
+            }
+
             let sourceLocalization = stringEntry.localizations?[sourceLanguage]
             let targetLocalization = localizedValue(for: targetLanguage, in: stringEntry.localizations)
 

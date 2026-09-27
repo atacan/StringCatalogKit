@@ -35,6 +35,18 @@ final class StringCatalogCodableTests: XCTestCase {
         XCTAssertEqual(catalog, decodedAgain)
     }
 
+    func testShouldTranslateRoundTrips() throws {
+        let json = #"{"sourceLanguage":"en","strings":{"Brand":{"shouldTranslate":false}},"version":"1.0"}"#
+
+        let catalog = try JSONDecoder().decode(StringCatalog.self, from: Data(json.utf8))
+
+        XCTAssertEqual(catalog.strings["Brand"]?.shouldTranslate, false)
+
+        let encoded = try catalog.encodePrettyToString()
+        let encodedCatalog = try JSONDecoder().decode(StringCatalog.self, from: Data(encoded.utf8))
+        XCTAssertEqual(encodedCatalog.strings["Brand"]?.shouldTranslate, false)
+    }
+
     func testRoundTripPreservesUnmodeledStringEntryFields() throws {
         let catalog = try StringCatalog(contentsOf: InputFiles.unknownEntryFields)
 
