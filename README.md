@@ -33,6 +33,35 @@ let result = try await engine.translateCatalog(catalog, to: .german)
 print(result.report.stats)
 ```
 
+## Durable Runs
+
+Long runs can save progress and stop early when retrying is pointless:
+
+```swift
+let engine = CatalogTranslationEngine(
+    translator: translator,
+    options: TranslationOptions(
+        maxConcurrentRequests: 4,
+        maxConsecutiveFailures: 10,  // stop after 10 failures in a row (nil = never)
+        checkpointPolicy: TranslationCheckpointPolicy(everySegments: 25, interval: 5)
+    )
+)
+
+let result = try await engine.translateCatalog(catalog, to: .german) { partial in
+    // Every segment translated so far is applied to partial.catalog.
+    try partial.catalog.encodePrettyToString().write(to: outputURL, atomically: true, encoding: .utf8)
+}
+
+if let abort = result.report.abort {
+    print("Stopped early: \(abort.reason); \(result.report.stats.skippedSegments) segments not attempted")
+}
+```
+
+- The checkpoint handler runs on the collecting task. If it throws, the run stops and the error is rethrown.
+- A translator can throw `CatalogTranslationAbort(reason:)` for errors that will fail every segment, such as bad credentials or exhausted quota. In best-effort mode the engine records that failure, starts no new requests, cancels in-flight ones, and returns everything translated so far, with `report.abort` set.
+- `report.translatedRequests` lists the segments applied to the result's catalog. A segment that is neither translated nor failed was skipped.
+- A new request starts only after the previous outcome has been processed, so an abort never lets extra requests through.
+
 ## File Workflow
 
 ```swift

@@ -12,32 +12,64 @@ public struct CatalogTranslationEngine: Sendable {
         }
     }
 
+    /// Translates every pending segment of `catalog` into `targetLanguage`.
+    ///
+    /// - Parameter onCheckpoint: Called from the collecting task with a snapshot of all
+    ///   translations completed so far, as often as `TranslationOptions.checkpointPolicy`
+    ///   allows. Persist it to survive interruption. The final result is not delivered
+    ///   here; it is the return value. An error thrown by the handler stops the run and is
+    ///   rethrown.
     public func translateCatalog(
         _ catalog: StringCatalog,
         to targetLanguage: LanguageCode,
-        mode: TranslationMode = .bestEffort
+        mode: TranslationMode = .bestEffort,
+        onCheckpoint: (@Sendable (CatalogTranslationResult) async throws -> Void)? = nil
     ) async throws -> CatalogTranslationResult {
         let jobs = buildJobs(for: catalog, targetLanguage: targetLanguage)
         var stats = TranslationStats(attemptedSegments: jobs.count)
         var failures = [TranslationFailure]()
-        var successfulTranslations = [(job: Job, translatedText: String)]()
+        var translatedRequests = [TranslationRequest]()
+        var translatedCatalog = catalog
+        var abort: TranslationAbortInfo?
 
         // `withThrowingTaskGroup` can start all jobs at once. This semaphore enforces the
         // user-configured cap on in-flight translation requests (API rate limits / resource use).
         let semaphore = AsyncSemaphore(value: options.maxConcurrentRequests)
+        let runState = RunState()
+        let policy = options.checkpointPolicy
+        let maxConsecutiveFailures = options.maxConsecutiveFailures
+        var consecutiveFailures = 0
+        var translatedSinceCheckpoint = 0
+        var lastCheckpoint = Date()
+
+        func snapshot() -> CatalogTranslationResult {
+            var current = stats
+            current.translatedSegments = translatedRequests.count
+            current.failedSegments = failures.count
+            current.skippedSegments = max(0, current.attemptedSegments - current.translatedSegments - current.failedSegments)
+            return CatalogTranslationResult(
+                catalog: translatedCatalog,
+                report: TranslationReport(stats: current, failures: failures, translatedRequests: translatedRequests, abort: abort)
+            )
+        }
 
         do {
             try await withThrowingTaskGroup(of: JobOutcome.self) { group in
                 for job in jobs {
                     group.addTask {
+                        // The collector releases this permit after it has processed the
+                        // outcome, so a new request never starts before an abort decision.
                         await semaphore.wait()
+
+                        // Jobs queued behind the semaphore never start once the run is aborted.
+                        if await runState.isAborted || Task.isCancelled {
+                            return .skipped
+                        }
 
                         do {
                             let translatedText = try await translateClosure(job.request)
-                            await semaphore.signal()
                             return .success(job: job, translatedText: translatedText)
                         } catch {
-                            await semaphore.signal()
                             let failure = TranslationFailure(
                                 stringKey: job.request.stringKey,
                                 segment: job.request.segment,
@@ -50,18 +82,66 @@ public struct CatalogTranslationEngine: Sendable {
                                 throw StrictModeError.failure(failure)
                             }
 
-                            return .failure(failure)
+                            return .failure(failure, isFatal: error is CatalogTranslationAbort)
                         }
                     }
                 }
 
-                while let outcome = try await group.next() {
-                    switch outcome {
-                    case .success(let job, let translatedText):
-                        successfulTranslations.append((job: job, translatedText: translatedText))
-                    case .failure(let failure):
-                        failures.append(failure)
+                // A task group waits for every child before it can exit. If the run throws
+                // (strict failure, checkpoint error), release queued jobs so they can skip.
+                do {
+                    while let outcome = try await group.next() {
+                        switch outcome {
+                        case .success(let job, let translatedText):
+                            let sourceLocalization = catalog.strings[job.request.stringKey]?.localizations?[catalog.sourceLanguage]
+                            apply(
+                                translatedText: translatedText,
+                                segment: job.internalSegment,
+                                stringKey: job.request.stringKey,
+                                sourceLocalization: sourceLocalization,
+                                targetLanguage: targetLanguage,
+                                to: &translatedCatalog
+                            )
+                            translatedRequests.append(job.request)
+                            consecutiveFailures = 0
+                            translatedSinceCheckpoint += 1
+
+                        case .failure(let failure, let isFatal):
+                            // Requests cancelled by an abort are skipped, not failed.
+                            guard abort == nil else { break }
+                            failures.append(failure)
+                            consecutiveFailures += 1
+                            if isFatal {
+                                abort = TranslationAbortInfo(cause: .fatalError, reason: failure.reason)
+                            } else if let maxConsecutiveFailures, consecutiveFailures >= maxConsecutiveFailures {
+                                abort = TranslationAbortInfo(
+                                    cause: .consecutiveFailures(consecutiveFailures),
+                                    reason: "\(consecutiveFailures) segments failed in a row; last error: \(failure.reason)"
+                                )
+                            }
+                            if abort != nil {
+                                await runState.abort()
+                                group.cancelAll()
+                            }
+
+                        case .skipped:
+                            break
+                        }
+
+                        await semaphore.signal()
+
+                        if let onCheckpoint, abort == nil, translatedSinceCheckpoint > 0,
+                           translatedSinceCheckpoint >= policy.everySegments || Date().timeIntervalSince(lastCheckpoint) >= policy.interval {
+                            try await onCheckpoint(snapshot())
+                            translatedSinceCheckpoint = 0
+                            lastCheckpoint = Date()
+                        }
                     }
+                } catch {
+                    await runState.abort()
+                    group.cancelAll()
+                    await semaphore.open()
+                    throw error
                 }
             }
         } catch let strictError as StrictModeError {
@@ -71,29 +151,7 @@ public struct CatalogTranslationEngine: Sendable {
             }
         }
 
-        var translatedCatalog = catalog
-
-        for translation in successfulTranslations {
-            let sourceLocalization = catalog.strings[translation.job.request.stringKey]?.localizations?[catalog.sourceLanguage]
-
-            apply(
-                translatedText: translation.translatedText,
-                segment: translation.job.internalSegment,
-                stringKey: translation.job.request.stringKey,
-                sourceLocalization: sourceLocalization,
-                targetLanguage: targetLanguage,
-                to: &translatedCatalog
-            )
-            stats.translatedSegments += 1
-        }
-
-        stats.failedSegments = failures.count
-        stats.skippedSegments = max(0, stats.attemptedSegments - stats.translatedSegments - stats.failedSegments)
-
-        return CatalogTranslationResult(
-            catalog: translatedCatalog,
-            report: TranslationReport(stats: stats, failures: failures)
-        )
+        return snapshot()
     }
 }
 
@@ -131,7 +189,8 @@ private extension CatalogTranslationEngine {
 
     enum JobOutcome: Sendable {
         case success(job: Job, translatedText: String)
-        case failure(TranslationFailure)
+        case failure(TranslationFailure, isFatal: Bool)
+        case skipped
     }
 
     enum StrictModeError: Error {
@@ -439,15 +498,28 @@ private extension CatalogTranslationEngine {
 
 // Actor-backed semaphore used to safely coordinate permits across many child tasks.
 // This is only for throttling concurrent translation requests.
+private actor RunState {
+    private(set) var isAborted = false
+
+    func abort() {
+        isAborted = true
+    }
+}
+
 private actor AsyncSemaphore {
     private var value: Int
     private var waiters: [CheckedContinuation<Void, Never>] = []
+    private var isOpen = false
 
     init(value: Int) {
         self.value = max(1, value)
     }
 
     func wait() async {
+        if isOpen {
+            return
+        }
+
         if value > 0 {
             value -= 1
             return
@@ -456,6 +528,14 @@ private actor AsyncSemaphore {
         await withCheckedContinuation { continuation in
             waiters.append(continuation)
         }
+    }
+
+    /// Let every current and future waiter through. Used only while shutting a run down.
+    func open() {
+        isOpen = true
+        let pending = waiters
+        waiters.removeAll()
+        pending.forEach { $0.resume() }
     }
 
     func signal() {
